@@ -39,7 +39,7 @@ public class TestController {
 
     @GetMapping(path="/api/title", produces="text/plain")
     public String getTitle() {
-        return prefix + " Test App " + suffix;
+        return prefix + " Test App v2 " + suffix;
     }
 
 
