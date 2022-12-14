@@ -3,13 +3,15 @@ import "./styles.css"
 
 function App() {
 
+    const [title, setTitle] = useState('Test App');
     const [greeting, setGreeting] = useState('');
     const [item, setItem] = useState('');
     const [answer, setAnswer] = useState<string[]>(['nothing yet...', '']);
 
 
     useEffect(() => {
-        getGreeting()
+        getGreeting();
+        getTitle();
     }, []);
 
     const getGreeting = () => {
@@ -23,6 +25,19 @@ function App() {
             .then(text => setGreeting(text))
             .catch(err => setGreeting('Da ist etwas schief gelaufen'));
     }
+
+    const getTitle = () => {
+        fetch('/api/title', {
+            method: 'GET',
+            headers: {
+                'Accept': 'text/plain'
+            }
+        })
+            .then(response => response.text())
+            .then(text => setTitle(text))
+            .catch(err => setGreeting('Da ist etwas schief gelaufen'));
+    }
+
 
     const sendItem = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -42,8 +57,8 @@ function App() {
 
     return (
         <div>
-            <p>okay, this is my</p>
-            <h1>Test App</h1>
+            <p>okay, this is {title === 'Test App' ? 'my' : ''}</p>
+            <h1>{title}</h1>
             <p>And this is content delivered by the Server:</p>
             <br/>
             <span className={'showLarge'}>{greeting}!</span>

@@ -4,22 +4,28 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 public class TestController {
 
-    TestService testService;
+    private final TestService testService;
 
-    public TestController() {
-        this.testService = new TestService();
-    }
+    @Value("${prefix}")
+    String prefix;
+    @Value("${suffix}")
+    String suffix;
 
     private final List<String> greetings = Arrays.asList("Hallo", "Moin", "Servus", "Na", "Salut", "Hi There");
     private final Random rand = new Random();
     private String last;
     private String next = greetings.get(rand.nextInt(greetings.size()));
+
+    public TestController(TestService testService) {
+        this.testService = testService;
+    }
 
 
     @GetMapping(path="/api/greeting", produces="text/plain")
@@ -31,14 +37,22 @@ public class TestController {
         return next;
     }
 
+    @GetMapping(path="/api/title", produces="text/plain")
+    public String getTitle() {
+        return prefix + " Test App " + suffix;
+    }
 
-    @PostMapping("api/item/{item}")
-    public String[] createItem(@PathVariable String item) {
+
+    @PostMapping("api/item/{myString}")
+    public String[] createItem(@PathVariable String myString) {
         try {
-            item = testService.createItem(item);
+            myString = testService.createItem(myString);
         } catch (Exception e) {
-            item = "this didn't work **big sigh**";
+            myString = "this didn't work **big sigh**";
+            System.out.println(e.getClass());
+            System.out.println(e.getCause());
+            System.out.println(e.getMessage());
         }
-        return new String[]{"Okay, Thanks. ", item};
+        return new String[]{"Okay, Thanks. ", myString};
     }
 }
