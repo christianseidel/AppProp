@@ -9,9 +9,9 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.github.christianseidel</groupId>
-	<artifactId>application-properties-issue-parent</artifactId>
+	<artifactId>myTestApp-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>application-properties-issue-parent</name>
+	<name>myTestApp-parent</name>
 	<packaging>pom</packaging>
 	
 	<properties>

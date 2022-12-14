@@ -1,0 +1,48 @@
+body {
+    padding: 32px;
+    background-color: #eab2ea;
+}
+
+h1 {
+    color: #7e1414;
+}
+
+#getNext {
+    background-color: #8cc0ff;
+    border: 2px solid darkblue;
+    padding: 3px 24px;
+    border-radius: 12px;
+}
+
+#sendItem {
+    display: inline-block;
+    background-color: palegreen;
+    border: 2px solid forestgreen;
+    padding: 3px 24px;
+
+    margin-left: 32px;
+    border-radius: 12px;
+}
+
+
+.showLarge {
+    font-weight: bold;
+    color: rebeccapurple;
+    margin-left: 24px;
+    font-size: large;
+}
+
+.show {
+    font-weight: bold;
+    color: black;
+    margin-left: 6px;
+    font-size: large;
+}
+
+.introduction {
+    font-weight: normal;
+}
+
+.answer {
+    font-weight: bold;
+}

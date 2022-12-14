@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.christianseidel</groupId>
-        <artifactId>application-properties-issue-parent</artifactId>
+        <artifactId>myTestApp-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>application-properties-issue-backend</artifactId>
+    <artifactId>myTestApp-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>application-properties-issue-backend</name>
-    <description>Trying To Figure Out Why Application Properties Cannot Be Read On Unit Testing</description>
+    <name>myTestApp-backend</name>
+    <description>Trying To Figure Out Things</description>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

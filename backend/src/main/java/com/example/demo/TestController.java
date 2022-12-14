@@ -4,29 +4,49 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
 public class TestController {
 
-    private List<String> greetings = Arrays.asList("Hallo", "Moin", "Servus");
+    DemoApplicationServer applicationServer;
+    TestService testService;
 
-    @Value("${say.hello}")
-    private String sayHello;
+    public TestController() {
+        this.applicationServer = new DemoApplicationServer();
+        this.testService = new TestService();
+    }
+
+    private final List<String> greetings = Arrays.asList("Hallo", "Moin", "Servus", "Na", "Salut", "Hi There");
+    private final Random rand = new Random();
+    private String last;
+    private String next = greetings.get(rand.nextInt(greetings.size()));
+
 
     @GetMapping(path="/api/greeting", produces="text/plain")
     public String hello() {
-        Random rand = new Random();
-        return greetings.get(rand.nextInt(greetings.size()));
+        while (next == last) {
+            next = greetings.get(rand.nextInt(greetings.size()));
+        }
+        last = next;
+        return next;
     }
 
     @GetMapping(path="/api/hello", produces ="text/plain")
     public String sayHello() {
-        return sayHello;
+        return applicationServer.sayHello();
+    }
+
+    @PostMapping("api/item/{item}")
+    public String[] createItem(@PathVariable String item) {
+        try {
+            item = testService.createItem(item);
+        } catch (Exception e) {
+            item = "this didn't work **big sigh**";
+        }
+
+        return new String[]{"Okay, Thanks. ", item};
     }
 
 }
