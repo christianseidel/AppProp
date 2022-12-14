@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class TestController {
 
-    DemoApplicationServer applicationServer;
     TestService testService;
 
     public TestController() {
-        this.applicationServer = new DemoApplicationServer();
         this.testService = new TestService();
     }
 
@@ -25,7 +23,7 @@ public class TestController {
 
 
     @GetMapping(path="/api/greeting", produces="text/plain")
-    public String hello() {
+    public String sayHello() {
         while (next == last) {
             next = greetings.get(rand.nextInt(greetings.size()));
         }
@@ -33,10 +31,6 @@ public class TestController {
         return next;
     }
 
-    @GetMapping(path="/api/hello", produces ="text/plain")
-    public String sayHello() {
-        return applicationServer.sayHello();
-    }
 
     @PostMapping("api/item/{item}")
     public String[] createItem(@PathVariable String item) {
@@ -45,8 +39,6 @@ public class TestController {
         } catch (Exception e) {
             item = "this didn't work **big sigh**";
         }
-
         return new String[]{"Okay, Thanks. ", item};
     }
-
 }
