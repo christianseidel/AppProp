@@ -58,8 +58,8 @@ function App() {
     return (
         <div>
             <p>okay, this is {title === 'Test App' ? 'my' : ''}</p>
-            <h1>{title}</h1>
-            <p>And this is content delivered by the Server:</p>
+            <h1>{title} v2</h1>
+            <p>And the following is content delivered by the Server:</p>
             <br/>
             <span className={'showLarge'}>{greeting}!</span>
             <br/><br/><br/>
